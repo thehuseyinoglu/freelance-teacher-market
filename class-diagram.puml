@@ -1,0 +1,56 @@
+@startuml FreelanceTeacherMarket
+
+class Student <<Entity>> {
+    +name: String
+    +mail: String
+    +phone: String
+    +bookings: Booking[]
+    +book()
+    +follow()
+    +comment()
+}
+
+class Teacher <<Entity>> {
+    +name: String
+    +phone: String
+    +job: Job
+    +comments: Comment[]
+    +bookings: Booking[]
+    +followers: Student[]
+    +updateJob()
+    +startLesson()
+    +finishLesson()
+}
+
+class Booking <<Entity>> {
+    +student: Student
+    +teacher:
+    +date: String
+    +status: Status[]
+}
+
+class Comment <<Entity>> {
+    +text: String
+    +score: Number
+}
+
+class Job <<Entity>> {
+    +teacher: Teacher
+    +title: String
+    +content: String
+    +price: Number
+}
+
+enum Status {
+    INPROGRESS
+    DONE
+    CANCELED
+}
+
+Booking -down-> Status
+Student *-up-> Comment
+Student *-right-> Booking
+Teacher *--> Booking
+Teacher o--> Job
+Job "0..n" *-left-> "0..n" Booking
+@enduml
