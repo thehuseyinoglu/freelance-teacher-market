@@ -24,7 +24,7 @@ class Teacher <<Entity>> {
 
 class Booking <<Entity>> {
     +student: Student
-    +teacher:
+    +teacher: Teacher
     +date: String
     +status: Status[]
 }
@@ -53,4 +53,6 @@ Student *-right-> Booking
 Teacher *--> Booking
 Teacher o--> Job
 Job "0..n" *-left-> "0..n" Booking
+
+
 @enduml
