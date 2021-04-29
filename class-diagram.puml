@@ -2,6 +2,7 @@
 
 class Student <<Entity>> {
     +name: String
+    +age: Number
     +mail: String
     +phone: String
     +bookings: Booking[]
@@ -13,7 +14,7 @@ class Student <<Entity>> {
 class Teacher <<Entity>> {
     +name: String
     +phone: String
-    +job: Job
+    +job: Job[]
     +comments: Comment[]
     +bookings: Booking[]
     +followers: Student[]
@@ -26,6 +27,7 @@ class Booking <<Entity>> {
     +student: Student
     +teacher: Teacher
     +date: String
+    +subject: String
     +status: Status[]
 }
 

@@ -1,0 +1,27 @@
+{
+  "name": "freelance-teacher-market",
+  "version": "1.0.0",
+  "description": "nimble.dev - homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thehuseyinoglu/freelance-teacher-market.git"
+  },
+  "author": "Berkay Huseyinoglu <thehuseyinoglu.work@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thehuseyinoglu/freelance-teacher-market/issues"
+  },
+  "homepage": "https://github.com/thehuseyinoglu/freelance-teacher-market#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
