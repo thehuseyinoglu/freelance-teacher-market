@@ -2,7 +2,7 @@ const { printBookingHistory, printCommentHistory } = require('./lib/print-histor
 const { studentDatabase, teacherDatabase } = require('./database')
 
 const dogukan = teacherDatabase.findBy('name', 'Dogukan')
-const berkay = studentDatabase.findByName('Berkay')
+const berkay = studentDatabase.findBy('name','Berkay')
 const jobs = teacherDatabase.findByJob('Math Teacher')
 
 berkay.book(dogukan, 'code review', '24.05.2021')
@@ -17,4 +17,3 @@ printBookingHistory(berkay)
 berkay.follow(dogukan)
 
 console.log(jobs[0].name)
-console.log(berkay.following[0].name)
