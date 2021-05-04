@@ -15,6 +15,7 @@ class Student {
         const booking = new Booking(teacher, this, subject, date)
 
         this.bookings.push(booking)
+        teacher.bookings.push(booking)
 
         return booking
     }
