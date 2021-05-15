@@ -1,0 +1,12 @@
+extends layout 
+block content 
+    h2 Teacher
+    p There are #{teachers.length} teacher 
+
+    ol 
+
+        each teacher in teachers 
+            li
+                a(href=`/teachers/${teacher.id}`) #{teacher.name}
+
+
