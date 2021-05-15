@@ -42,19 +42,4 @@ router.post('/:studentId/bookings', async (req, res) =>{
     res.send('ok')
 })
 
-router.post('/:studentId/comments', async (req, res) =>{
-    const {  studentId } = req.params
-    const { teacherId, text, score} = req.body
-
-    const student = await studentDatabase.find(studentId)
-    const teacher = await teacherDatabase.find(teacherId)
-
-    student.comment(teacher, text, score)
-
-    await studentDatabase.update(student)
-    await teacherDatabase.update(teacher)
-
-    res.send('ok')
-})
-
 module.exports = router
