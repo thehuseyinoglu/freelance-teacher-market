@@ -1,30 +1,17 @@
-const { printBookingHistory, printCommentHistory } = require('./lib/print-history')
-const { studentDatabase, teacherDatabase } = require('./database')
+const express = require('express')
+const studentsRouter = require('./routes/students')
+const teachersRouter = require('./routes/teachers')
+const indexRouter = require('./routes/index')
 
+const app = express()
+app.use(express.json())
 
-async function main() {
-    const dogukan = await teacherDatabase.findBy('name', 'Dogukan')
-    const berkay = await studentDatabase.findBy('name', 'Berkay')
-    const jobs = await teacherDatabase.findByJob('Math Teacher')
+app.set('view engine', 'pug')
 
-    berkay.book(dogukan, 'code review', '24.05.2021')
-    
-    berkay.comment(dogukan, 'Nice lesson', 5)
-    
-    await teacherDatabase.update(dogukan)
-    await studentDatabase.update(berkay)
+app.use('/students', studentsRouter)
+app.use('/teachers', teachersRouter)
+app.use('/', indexRouter)
 
-    printCommentHistory(dogukan)
-    printBookingHistory(berkay)
-
-    berkay.follow(dogukan)
-
-    console.log(jobs[0].name)
-}
-
-main()
-
-
-
-
-
+app.listen(3000, () => {
+    console.log('Started listening on 3000')
+})
