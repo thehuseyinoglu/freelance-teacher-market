@@ -26,4 +26,19 @@ router.get('/:teacherId', async (req, res) => {
     res.render('teacher', {teacher})
 })
 
+router.post('/:teacherId/comments', async (req, res) =>{
+    const {  teacherId } = req.params
+    const { studentId, text, score} = req.body
+
+    const student = await studentDatabase.find(studentId)
+    const teacher = await teacherDatabase.find(teacherId)
+
+    student.comment(teacher, text, score)
+
+    await studentDatabase.update(student)
+    await teacherDatabase.update(teacher)
+
+    res.send('ok')
+})
+
 module.exports = router
