@@ -3,12 +3,13 @@ const Comment = require('./comment')
 const uuid = require('uuid')
 
 class Student {
-    constructor(id = uuid.v4(), name, age, bookings = [], following = []) {
+    constructor(id = uuid.v4(), name, age, bookings = [], following = [], comments = []) {
         this.id = id
         this.name = name
         this.age = age
         this.bookings = bookings
         this.following = following
+        this.comments = comments
     }
 
     book(teacher, subject, date) {
@@ -21,8 +22,9 @@ class Student {
     }
 
     comment(teacher, text, score) {
-        const comment = new Comment(teacher, this, text, score)
+        const comment = new Comment(undefined, teacher, this, text, score)
 
+        this.comments.push(comment)
         teacher.comments.push(comment)
 
         return comment
@@ -33,8 +35,8 @@ class Student {
         this.following.push(teacher)
     }
 
-    static create({ id, name, age, bookings, following }) {
-        return new Student(id, name, age, bookings, following)
+    static create({ id, name, age, bookings, following, comments }) {
+        return new Student(id, name, age, bookings, following, comments)
     }
 
 }
