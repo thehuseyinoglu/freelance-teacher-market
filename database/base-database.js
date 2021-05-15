@@ -30,7 +30,14 @@ class BaseDatabase {
 
     async insert(object) {
         const objects = await this.load()
-        return this.save(objects.concat(object))
+
+        if(!(object instanceof this.model)){
+            object = this.model.create(object)
+        }
+
+        await this.save(objects.concat(object))
+
+        return object
     }
 
     async remove(index) {
@@ -38,6 +45,17 @@ class BaseDatabase {
 
         objects.splice(index, 1)
         return this.save(objects)
+    }
+
+    async removeBy(property, value){
+        const objects = await this.load()
+
+        const index = objects.findIndex(o => o[property] == value)
+
+        if (index == -1) throw new Error(`Cannot find ${this.model.name} instance with ${property} ${value}`)
+
+        objects.splice(index, 1)
+        await this.save(objects)
     }
 
     async update(object) {
@@ -49,6 +67,11 @@ class BaseDatabase {
 
         objects.splice(index, 1, object)
         return this.save(objects)
+    }
+
+    async find(id) {
+        const objects = await this.load()
+        return objects.find(o => o.id == id)
     }
 
     async findBy(property, value) {
