@@ -2,6 +2,7 @@ const express = require('express')
 const studentsRouter = require('./routes/students')
 const teachersRouter = require('./routes/teachers')
 const indexRouter = require('./routes/index')
+require('./mongo-connection')
 
 const app = express()
 app.use(express.json())
