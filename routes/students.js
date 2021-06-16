@@ -1,5 +1,6 @@
 const { studentDatabase, teacherDatabase } = require('../database')
 const flatted = require('flatted')
+const student = require('../models/student')
 
 const router = require('express').Router()
 
@@ -16,7 +17,7 @@ router.post('/', async (req, res) => {
 })
 
 router.delete('/:studentId', async (req, res) =>{
-    studentDatabase.removeBy('id', req.params.studentId)
+    studentDatabase.removeBy('_id', req.params.studentId)
 
     res.send('ok')
 })
@@ -40,6 +41,13 @@ router.post('/:studentId/bookings', async (req, res) =>{
     await teacherDatabase.update(teacher)
     
     res.send('ok')
+})
+
+router.patch('/:studentId', async (req,res) =>{
+    const {studentId} = req.params
+    const {name} = req.body
+
+    await studentDatabase.update(studentId, {name})
 })
 
 module.exports = router
