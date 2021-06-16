@@ -1,0 +1,19 @@
+POST http://localhost:3000/students HTTP/1.1
+content-type: application/json
+
+{"name":"new client to mongodb", "age":28}
+
+###
+
+GET http://localhost:3000/students/60ca19e8909b83481061892b HTTP/1.1
+
+###
+
+DELETE http://localhost:3000/students/60ca1258d7d77a555c090520 HTTP/1.1
+
+###
+
+PATCH http://localhost:3000/students/60ca1aee4a017a4ee010ec2c HTTP/1.1
+content-type: application/json
+
+{"name":"new name"}
