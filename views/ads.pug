@@ -1,0 +1,15 @@
+extends layout 
+block content 
+    h2 Ads
+    p There are #{ads.length} ads. 
+   
+
+    ol 
+
+         each ad in ads 
+            li
+                p Teacher
+                    a(href=`/teachers/${ad.teacher.id}`) #{ad.teacher.name}
+                p Content Details
+                p #{ad.title} - #{ad.content} - #{ad.price}$
+

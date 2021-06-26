@@ -1,0 +1,17 @@
+
+extends layout 
+block content 
+    h2 Bookings
+    p There are #{bookings.length} bookings. 
+
+    ol 
+
+        each booking in bookings 
+            li
+                p Student 
+                    a(href=`/students/${booking.student.id}`) #{booking.student.name}
+                p Teacher
+                    a(href=`/teachers/${booking.teacher.id}`) #{booking.teacher.name}
+                p Subject and Date
+                p #{booking.subject} - #{booking.date}
+
