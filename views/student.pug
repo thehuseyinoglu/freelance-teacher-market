@@ -6,9 +6,15 @@ block content
     h3 Booking history 
     if student.bookings.length 
         each booking in student.bookings 
-            li Study #{booking.subject} with #{booking.teacher.name} 
+            li Study #{booking.subject} with #{booking.student.name}
     else 
         p No bookings
 
+    h3 Comments
+    if student.comments.length 
+        each comment in student.comments 
+            li #{comment.text} - #{comment.score} point - #{comment.teacher.name}
+    else
+        p No Comments
 
 
