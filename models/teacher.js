@@ -1,23 +1,27 @@
-const Job = require('./job')
-const uuid = require('uuid')
+// const Job = require('./job')
+// const uuid = require('uuid')
 
-class Teacher {
-    constructor(id = uuid.v4(), name, comments = [], job = '', followers = [], bookings = []) {
-        this.id = id
-        this.name = name
-        this.comments = comments
-        this.job = job
-        this.followers = followers
-        this.bookings = bookings
-    }
+const mongoose = require("mongoose")
 
-    createJob(title, content, price) {
-        this.job = new Job(this, title, content, price)
-    }
+const TeacherSchema = new mongoose.Schema({
+    name:String,
+    age:{type: Number, required:true, min: 18},
+    bookings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Booking',
+        autopopulate: {maxDepth: 2}
+    }],
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment',
+        autopopulate: {maxDepth: 2}
+    }],
+    adversiments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Adversiment',
+        autopopulate: {maxDepth: 2}
+    }]
+})
 
-    static create({ id, name, comments, job, followers, bookings}) {
-        return new Teacher(id, name, comments, job, followers, bookings)
-    }
-}
-
-module.exports = Teacher
+TeacherSchema.plugin(require('mongoose-autopopulate'))
+module.exports = mongoose.model('Teacher', TeacherSchema)

@@ -1,13 +1,19 @@
-const uuid = require('uuid')
+const mongoose = require("mongoose")
 
-class Comment {
-    constructor(commentId = uuid.v4(), teacher, student, text, score) {
-        this.commentId = commentId
-        this.teacher = teacher
-        this.student = student
-        this.text = text
-        this.score = score
-    }
-}
-
-module.exports = Comment
+const CommentSchema = new mongoose.Schema({
+    teacher:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Teacher',
+        autopopulate: {maxDepth: 1}
+    },
+    student:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Student',
+        autopopulate: {maxDepth: 1}
+    },
+    text: String,
+    score: Number,
+    
+})
+CommentSchema.plugin(require('mongoose-autopopulate'))
+module.exports = mongoose.model('Comment', CommentSchema)
