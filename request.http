@@ -1,7 +1,7 @@
 POST http://localhost:3000/students HTTP/1.1
 content-type: application/json
 
-{"name":"new client to mongodb", "age":28}
+{"name":"Berkay", "age":23}
 
 ###
 
@@ -13,7 +13,46 @@ DELETE http://localhost:3000/students/60ca1258d7d77a555c090520 HTTP/1.1
 
 ###
 
-PATCH http://localhost:3000/students/60ca1aee4a017a4ee010ec2c HTTP/1.1
+PATCH http://localhost:3000/students/60d35738f72ce46c088c73f6 HTTP/1.1
 content-type: application/json
 
-{"name":"new name"}
+{"name":"berkayy"}
+
+###
+
+POST http://localhost:3000/teachers HTTP/1.1
+content-type: application/json
+
+{"name":"Dogukan", "age": 26}
+
+###
+
+DELETE http://localhost:3000/teachers/60cb39a94d951e48f05808b3 HTTP/1.1
+
+###
+
+POST http://localhost:3000/students/60d737539188852bbcf5ce7a/bookings HTTP/1.1
+content-type: application/json
+
+{"teacherId": "60d737839188852bbcf5ce7b", "subject": "Code Review", "date": "26.06.2021"}
+
+###
+
+PATCH http://localhost:3000/teachers/60d32f8af05bf243547cea40 HTTP/1.1
+content-type: application/json
+
+{"name": "Dogukan"}
+
+###
+
+POST http://localhost:3000/teachers/60d737839188852bbcf5ce7b/comments HTTP/1.1
+content-type: application/json
+
+{"studentId": "60d737539188852bbcf5ce7a", "text": "Nice lesson", "score": 5}
+
+###
+
+POST http://localhost:3000/teachers/60d737839188852bbcf5ce7b/adversiments HTTP/1.1
+content-type: application/json
+
+{"title": "Code Review", "content": "learn math", "price": 150}
